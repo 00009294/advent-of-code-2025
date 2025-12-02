@@ -4,7 +4,6 @@ public class Solution
     static void Main()
     {
         //string[] sampleArr = { "L68", "L30", "R48", "L5", "R60", "L55", "L1", "L99", "R14", "L82" };
-
         IConfiguration config = new ConfigurationBuilder()
             .SetBasePath(Directory.GetCurrentDirectory())
             .AddJsonFile("appSettings.json", false, true)
