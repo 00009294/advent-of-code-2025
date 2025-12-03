@@ -5,10 +5,6 @@ public class Solution
 {
     static void Main()
     {
-        //string allIds = "11-22,95-115,998-1012,1188511880-1188511890,222220-222224," +
-        //    "1698522-1698528,446443-446449,38593856-38593862,565653-565659," +
-        //    "824824821-824824827,2121212118-2121212124";
-
         IConfiguration config = new ConfigurationBuilder()
             .SetBasePath(Directory.GetCurrentDirectory())
             .AddJsonFile("appSettings.json", false, true)
@@ -47,28 +43,6 @@ public class Solution
         Console.WriteLine("Part2: " + part2);
     }
 
-    private static bool IsValidForPart2(string s)
-    {
-        int n = s.Length;
-
-        for (int len = 1; len <= n / 2; len++)
-        {
-            if (n % len != 0) continue;
-
-            string block = s.Substring(0, len);
-            int repeat = n / len;
-
-            StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < repeat; i++)
-                sb.Append(block);
-
-            if (sb.ToString() == s)
-                return true;
-        }
-
-        return false;
-    }
-
     private static bool IsValidForPart1(string s)
     {
         double innerCount = 0;
@@ -85,6 +59,27 @@ public class Solution
         if (innerCount == s.Length / 2)
             return true;
 
+
+        return false;
+    }
+    private static bool IsValidForPart2(string s)
+    {
+        int n = s.Length;
+
+        for (int i = 1; i <= n / 2; i++)
+        {
+            if (n % i != 0) continue;
+
+            string block = s.Substring(0, i);
+            int repeat = n / i;
+
+            StringBuilder sb = new StringBuilder();
+            for (int j = 0; j < repeat; j++)
+                sb.Append(block);
+
+            if (sb.ToString() == s)
+                return true;
+        }
 
         return false;
     }
